@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Campus Canteen Pre-Order System — Project Documentation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  @page {
+    size: A4;
+    margin: 16mm 14mm 16mm 14mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1e293b;
+    background: #ffffff;
+    line-height: 1.55;
+    font-size: 13.5px;
+  }
+
+  .cover {
+    page-break-after: always;
+    padding: 60px 40px;
+    text-align: center;
+    border: 2px solid #047857;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%);
+    margin-bottom: 20px;
+  }
+
+  .badge-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background-color: #047857;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+
+  .cover h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #064e3b;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .cover .subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #b45309;
+    margin-bottom: 25px;
+  }
+
+  .cover .description {
+    font-size: 13.5px;
+    color: #475569;
+    max-width: 600px;
+    margin: 0 auto 35px auto;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 520px;
+    margin: 0 auto 30px auto;
+    text-align: left;
+  }
+
+  .meta-item {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+
+  .meta-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #64748b;
+  }
+
+  .meta-val {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-top: 2px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #064e3b;
+    border-bottom: 2px solid #10b981;
+    padding-bottom: 6px;
+    margin: 24px 0 12px 0;
+  }
+
+  h3 {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 14px 0 6px 0;
+  }
+
+  p {
+    margin-bottom: 10px;
+    color: #334155;
+  }
+
+  .section-break {
+    page-break-after: always;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px 0;
+    font-size: 12.5px;
+  }
+
+  th {
+    background: #047857;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: left;
+    padding: 8px 10px;
+  }
+
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #1e293b;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #f8fafc;
+  }
+
+  /* Cards */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+    background: #f8fafc;
+  }
+
+  .card-header {
+    font-weight: 700;
+    font-size: 13px;
+    color: #064e3b;
+    margin-bottom: 4px;
+  }
+
+  .workflow-box {
+    background: #f0fdf4;
+    border: 1px dashed #059669;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: #065f46;
+    margin: 14px 0;
+  }
+
+  .code-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #0f172a;
+  }
+
+  .highlight-box {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin: 12px 0;
+    font-size: 12.5px;
+    color: #92400e;
+  }
+
+  ul {
+    margin-left: 20px;
+    margin-bottom: 12px;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- COVER PAGE -->
+  <div class="cover">
+    <div class="badge-tag">Academic Capstone Project & Production Full-Stack Architecture</div>
+    <h1>Campus Canteen Pre-Order System</h1>
+    <div class="subtitle">A Smart Way to Dine on Campus</div>
+    <div class="description">
+      An enterprise-grade, web-based dining automation platform engineered to eliminate canteen queues, automate kitchen order dispatching, prevent counter congestion, and provide real-time order tracking with role-based access control.
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Backend Technology</div>
+        <div class="meta-val">Java 21 LTS & Spring Boot 3.3.4</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Frontend Technology</div>
+        <div class="meta-val">React 18 + Vite (SPA)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Database Architecture</div>
+        <div class="meta-val">MySQL 8.x (Relational & Normalized)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Security & Auth</div>
+        <div class="meta-val">BCrypt Hashing & Stateless JWT (RBAC)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Project Repository</div>
+        <div class="meta-val">github.com/dollibhanu2007/Campus_Canteen</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Cloud Deployment</div>
+        <div class="meta-val">Render Docker & Static Blueprint</div>
+      </div>
+    </div>
+
+    <div style="font-size: 11px; color: #64748b; margin-top: 20px;">
+      Generated for Technical Review, Viva Voce & Academic Project Presentation
+    </div>
+  </div>
+
+  <!-- SECTION 1: PROBLEM STATEMENT & OBJECTIVES -->
+  <h2>1. Problem Statement & Project Objectives</h2>
+  <p>
+    During peak break hours in universities and colleges, campus canteens face severe congestion. Students spend 15–25 minutes waiting in lines to order and pay, often leading to delayed classes or missed meals. Simultaneously, canteen kitchen staff struggle to predict food demand in advance, leading to inventory shortages or substantial food wastage.
+  </p>
+
+  <div class="highlight-box">
+    <strong>Key Innovation:</strong> The Campus Canteen Pre-Order System transforms on-premise dining into a scheduled pickup model. Students pre-order and reserve specific pickup slots prior to their break. When break starts, meals are already prepared and packed for instantaneous token-verified counter handover.
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-header">Zero Queue Waiting</div>
+      <p style="font-size: 11.5px; margin: 0;">Students arrive at the scheduled pickup window, verify their order token, and grab meals without queuing.</p>
+    </div>
+    <div class="card">
+      <div class="card-header">Live Kitchen Stream</div>
+      <p style="font-size: 11.5px; margin: 0;">Kitchen cooks view incoming meals chronologically by time slot and prepare orders in batches.</p>
+    </div>
+    <div class="card">
+      <div class="card-header">Audited Financials</div>
+      <p style="font-size: 11.5px; margin: 0;">Admins monitor real-time gross revenue, net sales excluding cancellations, and item popularity.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: SYSTEM ARCHITECTURE & WORKFLOW -->
+  <h2>2. System Architecture & Order Lifecycle Engine</h2>
+  <p>
+    The system strictly enforces an irreversible, sequential state machine ensuring food is never wasted or cancelled once cooking begins.
+  </p>
+
+  <div class="workflow-box">
+    Browse Menu & Cart &nbsp;➔&nbsp; <strong>PLACED</strong> (Initial Token Issued) &nbsp;➔&nbsp; <strong>PREPARING</strong> (Cooked in Kitchen) &nbsp;➔&nbsp; <strong>READY</strong> (Packed at Counter) &nbsp;➔&nbsp; <strong>COLLECTED</strong> (Handover Complete)
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Order Status</th>
+        <th>Actor Responsible</th>
+        <th>Business Rules & Lifecycle Constraints</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>PLACED</strong></td>
+        <td>Customer</td>
+        <td>Order created with server-recalculated line totals. Customer cancellation is permitted ONLY at this stage.</td>
+      </tr>
+      <tr>
+        <td><strong>PREPARING</strong></td>
+        <td>Canteen Staff</td>
+        <td>Chef marks meal as cooking. Customer cancellation is strictly locked and forbidden past this point.</td>
+      </tr>
+      <tr>
+        <td><strong>READY</strong></td>
+        <td>Canteen Staff</td>
+        <td>Food is packed and waiting at pickup counter. Customer tracker highlights pickup token in green.</td>
+      </tr>
+      <tr>
+        <td><strong>COLLECTED</strong></td>
+        <td>Staff & Customer</td>
+        <td>Meal handover verified against counter token. Order finalized and logged in completed revenue.</td>
+      </tr>
+      <tr>
+        <td><strong>CANCELLED</strong></td>
+        <td>Customer / Staff</td>
+        <td>Allowed only in PLACED stage. Reason recorded in DB and excluded from net sales analytics.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 3: ROLE-BASED ACCESS CONTROL (RBAC) -->
+  <h2>3. Role-Based Access Control (RBAC) & Features</h2>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-header">1. Student / Staff Customer</div>
+      <ul style="font-size: 11.5px; padding-left: 14px;">
+        <li>Personalized dashboard with active meal trackers</li>
+        <li>Dynamic search and dietary category filters (Veg/Non-Veg)</li>
+        <li>Persistent shopping cart with live subtotal</li>
+        <li>Scheduled pickup time slot reservation</li>
+        <li>Real-time 5-second status polling</li>
+        <li>Cancellation permitted strictly when PLACED</li>
+        <li>Order itemization and profile settings</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">2. Canteen Kitchen Staff</div>
+      <ul style="font-size: 11.5px; padding-left: 14px;">
+        <li>Operational queue board with audio/visual cues</li>
+        <li>One-click status updates (Start Preparing, Mark Ready, Handover)</li>
+        <li>Real-time inventory stock toggle (In Stock / Sold Out)</li>
+        <li>Customer contact details for fulfillment</li>
+        <li>Historical kitchen order metrics</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header">3. Campus Administrator</div>
+      <ul style="font-size: 11.5px; padding-left: 14px;">
+        <li>Platform KPI metrics (Net revenue, total meals, users)</li>
+        <li>Date-range financial sales reports</li>
+        <li>Full CRUD for Menu items, Categories & Pickup Slots</li>
+        <li>User account activation, deactivation & role reassignment</li>
+        <li>Administrative audit activity logs</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-break"></div>
+
+  <!-- SECTION 4: DATABASE DESIGN (MYSQL) -->
+  <h2>4. Relational Database Schema (MySQL 8)</h2>
+  <p>
+    The schema is normalized to 3NF with foreign key constraints, cascading deletes where appropriate, and price snapshotting.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Table Name</th>
+        <th>Primary Keys & Relationships</th>
+        <th>Core Attributes & Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="code-pill">users</span></td>
+        <td><span class="code-pill">id</span> (PK)</td>
+        <td>Full name, email (unique), password_hash (BCrypt), role (ROLE_CUSTOMER, ROLE_STAFF, ROLE_ADMIN), phone, active status.</td>
+      </tr>
+      <tr>
+        <td><span class="code-pill">menu_categories</span></td>
+        <td><span class="code-pill">id</span> (PK)</td>
+        <td>Category name (Breakfast, Meals, Quick Bites, Beverages), description, display order.</td>
+      </tr>
+      <tr>
+        <td><span class="code-pill">menu_items</span></td>
+        <td><span class="code-pill">id</span> (PK), FK: category_id</td>
+        <td>Item name, description, price (₹), available (boolean), is_veg, preparation time, image URL.</td>
+      </tr>
+      <tr>
+        <td><span class="code-pill">pickup_slots</span></td>
+        <td><span class="code-pill">id</span> (PK)</td>
+        <td>Start time, end time, max capacity limit per slot, active status.</td>
+      </tr>
+      <tr>
+        <td><span class="code-pill">orders</span></td>
+        <td><span class="code-pill">id</span> (PK), FK: user_id, pickup_slot_id</td>
+        <td>Unique order token (e.g. CC-261011-2781), status enum, subtotal, total amount, pickup date, instructions.</td>
+      </tr>
+      <tr>
+        <td><span class="code-pill">order_items</span></td>
+        <td><span class="code-pill">id</span> (PK), FK: order_id, menu_item_id</td>
+        <td><strong>Item price snapshot:</strong> Captures unit price and line totals at purchase time so future menu edits do not corrupt historical financials.</td>
+      </tr>
+      <tr>
+        <td><span class="code-pill">order_status_history</span></td>
+        <td><span class="code-pill">id</span> (PK), FK: order_id, changed_by</td>
+        <td>Audit log recording exact transition timestamps, previous status, new status, and kitchen chef notes.</td>
+      </tr>
+      <tr>
+        <td><span class="code-pill">admin_activity_logs</span></td>
+        <td><span class="code-pill">id</span> (PK), FK: actor_user_id</td>
+        <td>Tracks administrative modifications including menu pricing changes, user status toggles, and slot capacity alterations.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 5: SECURITY IMPLEMENTATION -->
+  <h2>5. Security & Validation Architecture</h2>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">Stateless JWT Authentication</div>
+      <p style="font-size: 12px;">Users receive an HMAC-SHA256 signed JWT upon login with a 24-hour expiration window. The token is parsed per-request by Spring Security's <span class="code-pill">JwtAuthenticationFilter</span> to populate the SecurityContext.</p>
+    </div>
+    <div class="card">
+      <div class="card-header">Server-Side Price Verification</div>
+      <p style="font-size: 12px;">Client-submitted prices and totals are completely ignored. When an order is submitted, Spring Boot fetches current prices from MySQL, recalculates line totals, checks item availability, and validates slot capacity.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6: HOW TO RUN & CREDENTIALS -->
+  <h2>6. Execution Instructions & Pre-Seeded Accounts</h2>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">Starting Backend (Spring Boot)</div>
+      <p style="font-size: 11.5px; margin-bottom: 4px;">Run in <span class="code-pill">backend/</span> directory:</p>
+      <p class="code-pill" style="display: block; padding: 6px;">.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=standalone"</p>
+      <p style="font-size: 11px; color: #64748b; margin-top: 4px;">Runs on port 8080 with auto-seeded demo data.</p>
+    </div>
+    <div class="card">
+      <div class="card-header">Starting Frontend (React Vite)</div>
+      <p style="font-size: 11.5px; margin-bottom: 4px;">Run in <span class="code-pill">frontend/</span> directory:</p>
+      <p class="code-pill" style="display: block; padding: 6px;">npm install && npm run dev</p>
+      <p style="font-size: 11px; color: #64748b; margin-top: 4px;">Runs on port 5173 with automatic backend proxying.</p>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Login Email</th>
+        <th>Default Password</th>
+        <th>Permissions & Capabilities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Student Customer</strong></td>
+        <td><span class="code-pill">student@campus.edu</span></td>
+        <td><span class="code-pill">Student@123</span></td>
+        <td>Browse menu, cart checkout, slot picker, order tracking</td>
+      </tr>
+      <tr>
+        <td><strong>Kitchen Staff</strong></td>
+        <td><span class="code-pill">staff@campus.edu</span></td>
+        <td><span class="code-pill">Staff@123</span></td>
+        <td>Kitchen queue, lifecycle updates, stock availability toggles</td>
+      </tr>
+      <tr>
+        <td><strong>Campus Administrator</strong></td>
+        <td><span class="code-pill">admin@campus.edu</span></td>
+        <td><span class="code-pill">Admin@123</span></td>
+        <td>System KPIs, revenue reports, full menu & slot CRUD, user control</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 7: TESTING RESULTS SUMMARY -->
+  <h2>7. Verification & Acceptance Testing Summary</h2>
+  <div class="highlight-box" style="background: #f0fdf4; border-color: #059669; color: #065f46;">
+    <strong>Verification Result:</strong> All 9 backend JUnit 5 / MockMvc tests passed (0 failures). The frontend Vite production bundle compiled 1,660 modules with 0 errors. All 12 end-to-end integration acceptance scenarios (registration, auth, catalog, cart, order token, tracking, kitchen transitions, and RBAC rejection) achieved 100% test success.
+  </div>
+
+</body>
+</html>
