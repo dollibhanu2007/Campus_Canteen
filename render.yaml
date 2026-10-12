@@ -4,9 +4,9 @@ services:
   # -------------------------------------------------------------
   - type: web
     name: campus-canteen-backend
-    env: docker
-    dockerfilePath: backend/Dockerfile
-    dockerContext: backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
     plan: free
     region: oregon
     autoDeploy: true
@@ -24,10 +24,12 @@ services:
   # -------------------------------------------------------------
   # 2. React Vite Frontend Web App (Static Site)
   # -------------------------------------------------------------
-  - type: static
+  - type: web
     name: campus-canteen-frontend
-    buildCommand: cd frontend && npm install && npm run build
-    publishPath: frontend/dist
+    runtime: static
+    rootDir: ./frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
     plan: free
     region: oregon
     autoDeploy: true
