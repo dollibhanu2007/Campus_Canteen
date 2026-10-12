@@ -14,14 +14,17 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
-# Run as non-privileged user for security
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-USER appuser
+# Setup non-privileged user and ensure write permissions for embedded database
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup \
+    && chown -R appuser:appgroup /app
 
 # Copy executable jar from builder
-COPY --from=builder /workspace/target/*.jar app.jar
+COPY --from=builder --chown=appuser:appgroup /workspace/target/*.jar app.jar
+
+USER appuser
 
 ENV PORT=8080
+ENV SPRING_PROFILES_ACTIVE=standalone
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-Dserver.port=${PORT}", "-jar", "app.jar"]
+ENTRYPOINT ["sh", "-c", "java -Djava.security.egd=file:/dev/./urandom -Dserver.port=${PORT:-8080} -Dspring.profiles.active=${SPRING_PROFILES_ACTIVE:-standalone} -jar app.jar"]
