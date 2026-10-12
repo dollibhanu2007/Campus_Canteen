@@ -6,6 +6,7 @@
 [![Java](https://img.shields.io/badge/Java-21%20LTS-orange.svg)](https://www.oracle.com/java/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.x-blue.svg)](https://www.mysql.com/)
 [![License](https://img.shields.io/badge/License-Academic%20Capstone-lightgrey.svg)]()
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/dollibhanu2007/Campus_Canteen)
 
 A complete, full-stack web application designed for campus dining. It enables students and faculty to pre-order food ahead of class breaks, reserve pickup time slots, track preparation in real time, and pick up meals with zero queue waiting. Features dedicated operational stations for **Canteen Kitchen Staff** and comprehensive management & financial reporting for **Administrators**.
 
