@@ -1,0 +1,8 @@
+target/
+*.mv.db
+canteen_data*
+.git
+.idea
+*.iml
+.vscode
+*.log

@@ -185,8 +185,22 @@ Navigate to `http://localhost:5173/login`. You can click the **Demo Autofill But
 - **Student Customer**: `student@campus.edu` / `Student@123`
 - Or register a new account on `/register`.
 
+---
 
-## 6. Automated Testing & Build Validation
+## 6. One-Click Cloud Deployment (Render Blueprint)
+
+The repository includes a ready-to-use [`render.yaml`](render.yaml) blueprint:
+1. Log in to [Render Dashboard](https://dashboard.render.com).
+2. Click **New +** → **Blueprint**.
+3. Select your repository `dollibhanu2007/Campus_Canteen`.
+4. Click **Apply** — Render automatically provisions:
+   - **`campus-canteen-backend`**: Dockerized Spring Boot 3 & Java 21 REST API.
+   - **`campus-canteen-frontend`**: React Vite Static Site with SPA rewrites.
+5. See [docs/RENDER_DEPLOYMENT.md](docs/RENDER_DEPLOYMENT.md) for full instructions and cloud database setup.
+
+---
+
+## 7. Automated Testing & Build Validation
 
 ### Running Backend Tests
 ```powershell
